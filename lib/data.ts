@@ -64,14 +64,14 @@ export const projectsData = [
   {
     title: 'TruStage',
     description:
-      'I worked as a full-stack developer focusing on Credit Union Analytics for Loan Officers using CuneXus.',
-    tags: ['React', 'Storybook', 'Node.js', 'Express', 'MySQL', 'Azure'],
+      "While working with TruStage I've worked as a full-stack developer focusing on developing data visualizations to provide Credit Unions with detailed analytics.",
+    tags: ['React', 'Chart.js', 'Node.js', 'Express', 'MySQL', 'Azure'],
     imageUrl: trustage,
   },
   {
     title: 'Mailgun',
     description:
-      'I worked on the public facing SaaS mail analytics dashboard providing detailed email insights for our customers.',
+      'While working with Mailgun I worked on the public facing SaaS mail analytics dashboard providing detailed email insights for our customers.',
     tags: ['React', 'Redux', 'Storybook', 'Python', 'Flask'],
     imageUrl: mailgun,
   },
@@ -79,18 +79,7 @@ export const projectsData = [
     title: 'Nike',
     description:
       'While working with Nike I worked on the Member Access Dashboard for internal teams to create content for Member Access.',
-    tags: [
-      'React',
-      'Redux',
-      'Node.js',
-      'Express',
-      'GraphQL',
-      'Java',
-      'Spring',
-      'DynamoDB',
-      'AWS',
-      'Chart.js',
-    ],
+    tags: ['React', 'Redux', 'Node.js', 'Express', 'GraphQL', 'AWS'],
     imageUrl: nike,
   },
 ] as const;
