@@ -1,10 +1,10 @@
 import React from 'react';
 import { CgWorkAlt } from 'react-icons/cg';
-import { FaReact } from 'react-icons/fa';
-import { LuGraduationCap } from 'react-icons/lu';
-import corpcommentImg from '@/public/corpcomment.png';
-import rmtdevImg from '@/public/rmtdev.png';
-import wordanalyticsImg from '@/public/wordanalytics.png';
+// import { FaReact } from 'react-icons/fa';
+// import { LuGraduationCap } from 'react-icons/lu';
+import nike from '@/public/nike.png';
+import trustage from '@/public/trustage.png';
+import mailgun from '@/public/mailgun.png';
 
 export const links = [
   {
@@ -35,52 +35,63 @@ export const links = [
 
 export const experiencesData = [
   {
-    title: 'Graduated bootcamp',
-    location: 'Miami, FL',
+    title: 'TruStage',
+    location: ' Software Engineer III',
     description:
-      'I graduated after 6 months of studying. I immediately found a job as a front-end developer.',
-    icon: React.createElement(LuGraduationCap),
-    date: '2019',
+      'Full-stack developer working primarily with Chart.js, React, Node.js, Express and Azure.',
+    icon: React.createElement(CgWorkAlt),
+    date: '2021 -  present',
   },
   {
-    title: 'Front-End Developer',
-    location: 'Orlando, FL',
+    title: 'Mailgun',
+    location: 'Software Developer II',
     description:
-      'I worked as a front-end developer for 2 years in 1 job and 1 year in another job. I also upskilled to the full stack.',
+      'Senior Front-end developer focusing on building out reusable components in Storybook with React and Redux connecting to a Python back-end',
     icon: React.createElement(CgWorkAlt),
     date: '2019 - 2021',
   },
   {
-    title: 'Full-Stack Developer',
-    location: 'Houston, TX',
+    title: 'Nike',
+    location: 'Senior Software Engineer',
     description:
-      "I'm now a full-stack developer working as a freelancer. My stack includes React, Next.js, TypeScript, Tailwind, Prisma and MongoDB. I'm open to full-time opportunities.",
-    icon: React.createElement(FaReact),
-    date: '2021 - present',
+      'Full-stack developer working primarily with React, Redux, Node.js, Express and GraphQL. ',
+    icon: React.createElement(CgWorkAlt),
+    date: '2018 - 2019',
   },
 ] as const;
 
 export const projectsData = [
   {
-    title: 'CorpComment',
+    title: 'TruStage',
     description:
-      'I worked as a full-stack developer on this startup project for 2 years. Users can give public feedback to companies.',
-    tags: ['React', 'Next.js', 'MongoDB', 'Tailwind', 'Prisma'],
-    imageUrl: corpcommentImg,
+      'I worked as a full-stack developer focusing on Credit Union Analytics for Loan Officers using CuneXus.',
+    tags: ['React', 'Storybook', 'Node.js', 'Express', 'MySQL', 'Azure'],
+    imageUrl: trustage,
   },
   {
-    title: 'rmtDev',
+    title: 'Mailgun',
     description:
-      'Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.',
-    tags: ['React', 'TypeScript', 'Next.js', 'Tailwind', 'Redux'],
-    imageUrl: rmtdevImg,
+      'I worked on the public facing SaaS mail analytics dashboard providing detailed email insights for our customers.',
+    tags: ['React', 'Redux', 'Storybook', 'Python', 'Flask'],
+    imageUrl: mailgun,
   },
   {
-    title: 'Word Analytics',
+    title: 'Nike',
     description:
-      'A public web app for quick analytics on text. It shows word count, character count and social media post limits.',
-    tags: ['React', 'Next.js', 'SQL', 'Tailwind', 'Framer'],
-    imageUrl: wordanalyticsImg,
+      'While working with Nike I worked on the Member Access Dashboard for internal teams to create content for Member Access.',
+    tags: [
+      'React',
+      'Redux',
+      'Node.js',
+      'Express',
+      'GraphQL',
+      'Java',
+      'Spring',
+      'DynamoDB',
+      'AWS',
+      'Chart.js',
+    ],
+    imageUrl: nike,
   },
 ] as const;
 
@@ -90,18 +101,12 @@ export const skillsData = [
   'JavaScript',
   'TypeScript',
   'React',
+  'Redux',
   'Next.js',
   'Node.js',
-  'Git',
-  'Tailwind',
-  'Prisma',
-  'MongoDB',
-  'Redux',
+  'Express',
   'GraphQL',
   'Apollo',
-  'Express',
-  'PostgreSQL',
-  'Python',
-  'Django',
-  'Framer Motion',
+  'AWS',
+  'Azure',
 ] as const;
