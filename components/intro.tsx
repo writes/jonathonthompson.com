@@ -9,7 +9,7 @@ import { HiDownload } from 'react-icons/hi';
 import { FaGithubSquare } from 'react-icons/fa';
 import { useSectionInView } from '@/lib/hooks';
 import { useActiveSectionContext } from '@/context/active-section-context';
-import headshot from '@/public/headshot.jpg';
+import headshot from '@/public/headshot-close.jpg';
 
 export default function Intro() {
   const { ref } = useSectionInView('Home', 0.5);
@@ -32,7 +32,7 @@ export default function Intro() {
             }}
           >
             <Image
-              src="/public/headshot.jpg"
+              src={headshot}
               alt="Jonathon portrait"
               width="192"
               height="192"
@@ -66,8 +66,7 @@ export default function Intro() {
         <span className="font-bold">Hello, I'm Jonathon.</span> I'm a{' '}
         <span className="font-bold">full-stack developer</span> with{' '}
         <span className="font-bold">10 years</span> of experience. I enjoy
-        building <span className="italic">sites & apps</span>. My focus is{' '}
-        <span className="underline"> React</span>.
+        building <span className="italic">websites & apps</span>.
       </motion.h1>
 
       <motion.div
