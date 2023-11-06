@@ -93,7 +93,6 @@ export const skillsData = [
   'Node.js',
   'Express',
   'GraphQL',
-  'Apollo',
   'AWS',
   'Azure',
   'HTML',

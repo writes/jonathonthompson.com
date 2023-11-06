@@ -18,35 +18,52 @@ export default function About() {
       id="about"
     >
       <SectionHeading>About me</SectionHeading>
-      <p className="mb-3">
-        About me info Did you hear that? They've shut down the main reactor.
-        We'll be destroyed for sure. This is madness! We're doomed! There'll be
-        no escape for the Princess this time. What's that? Artoo! Artoo-Detoo,
-        where are you? At last! Where have you been? They're heading in this
-        direction. What are we going to do? We'll be sent to the spice mine of
-        Kessel or smashed into who knows what! Wait a minute, where are you
-        going? The Death Star plans are not in the main computer. Where are
-        those transmissions you intercepted? What have you done with those
-        plans? We intercepted no transmissions. Aaah., This is a consular ship.
-        It is our only hope. Yes. We are approaching the planet Yavin. The Rebel
-        base is on a moon on the far side. We are preparing to orbit the planet.
-        Okay, hit it! We're coming up on the sentry ships. Hold 'em off! Angle
-        the deflector shields while I charge up the main guns! I can't believe
-        he's gone. There wasn't anything you could have done. Come on, buddy,
-        we're not out of this yet! You in, kid? Okay, stay sharp! Here they
-        come! They're coming in too fast! Oooh! We've lost lateral controls. You
-        must do what you feel is right, of course. Until this battle station is
-        fully operational we are vulnerable. The Rebel Alliance is too well
-        equipped. They're more dangerous than you realize.
+      <p className="mb-10">
+        Hello, and welcome to my slice of the digital world! I'm a seasoned full
+        stack engineer with a decade-long journey in software development,
+        starting as an eager intern in Addison, TX, where my fascination with
+        technology transformed brochure websites into immersive experiences. My
+        career is a tapestry of opportunities with esteemed names like
+        Rackspace, Mailgun, Trustage, and Nike, where I've honed my skills and
+        contributed to teams pushing the boundaries of what's possible.
       </p>
-
-      <p>
-        <span className="italic">When I'm not coding</span>, I enjoy playing
-        video games, watching movies, and playing with my dogs. I also enjoy{' '}
-        <span className="font-medium">continuously learning new things</span>.
-        {/* I am currently
-        learning about{' '}
-        <span className="font-medium">technology and the stock market</span>. */}
+      <p className="mb-10">
+        My professional ethos is anchored in three core tenets: hard work,
+        continuous learning, and a relentless passion for innovation. These
+        principles have not just shaped my career; they've become the keystones
+        of my day-to-day approach to solving problems. Working with modern
+        stacks such as React, Redux, and Node.js, I'm deeply versed in the
+        rhythms of TDD, CI/CD, and Agile methodologies – essentials for crafting
+        robust, scalable, and maintainable software.
+      </p>
+      <p className="mb-10">
+        I thrive on collaboration, with a belief that the greatest triumphs come
+        from being a dedicated team player. Whether it's learning a new stack or
+        diving into uncharted business logic, my goal is to ensure that my team
+        doesn't just succeed but excels.
+      </p>
+      <p className="mb-10">
+        When I'm not decoding problems, you'll find me capturing life through
+        the lens of my camera, exploring trails and the serenity of nature on
+        hikes, vanquishing video game foes, or cherishing time with family and
+        my playful dogs. Each of these passions, in their own way, reflects my
+        love for exploration, story-telling, and unwavering commitment – be it
+        in pixels or the real world.
+      </p>
+      <p className="mb-10">
+        As I look to the horizon, my aspirations are clear: to lead a team of
+        outstanding engineers, guiding a high-priority initiative to fruition. I
+        envision a future where my leadership and technical skills converge to
+        make impactful contributions to technology and to the people whose lives
+        are shaped by it.
+      </p>
+      <p className="mb-10">
+        I resonate deeply with the words of André Gide, "Believe those who are
+        seeking the truth; doubt those who find it." It's a reminder to stay
+        humble in our pursuit of knowledge and open-minded to the endless
+        possibilities of what we may uncover. So, whether you're here for
+        collaboration, to exchange insights, or just to say hello, I'm glad
+        you're here. Let's build something great together.
       </p>
     </motion.section>
   );
