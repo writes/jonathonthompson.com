@@ -2,9 +2,8 @@ import React from 'react';
 import { CgWorkAlt } from 'react-icons/cg';
 // import { FaReact } from 'react-icons/fa';
 // import { LuGraduationCap } from 'react-icons/lu';
-import nike from '@/public/nike.png';
-import trustage from '@/public/trustage.png';
-import mailgun from '@/public/mailgun.png';
+import rtwa from '@/public/rt-wa.png';
+import solana from '@/public/solana.png';
 
 export const links = [
   {
@@ -28,6 +27,10 @@ export const links = [
     hash: '#experience',
   },
   {
+    name: 'League Stats',
+    hash: '/league',
+  },
+  {
     name: 'Contact',
     hash: '#contact',
   },
@@ -35,12 +38,20 @@ export const links = [
 
 export const experiencesData = [
   {
+    title: 'Microsoft',
+    location: 'Software Engineer III',
+    description:
+      'Frontend lead building applications to enable Microsoft employees through AI integration.',
+    icon: React.createElement(CgWorkAlt),
+    date: '2024 - present',
+  },
+  {
     title: 'TruStage',
     location: ' Software Engineer III',
     description:
       'Full-stack developer working primarily with Chart.js, React, Node.js, Express and Azure.',
     icon: React.createElement(CgWorkAlt),
-    date: '2021 -  present',
+    date: '2021 - 2024',
   },
   {
     title: 'Mailgun',
@@ -62,25 +73,18 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: 'TruStage',
+    title: 'Solana Trading Bot',
     description:
-      "While working with TruStage I've worked as a full-stack developer focusing on developing data visualizations to provide Credit Unions with detailed analytics.",
-    tags: ['React', 'Chart.js', 'Node.js', 'Express', 'MySQL', 'Azure'],
-    imageUrl: trustage,
+      'Architected an automated cryptocurrency trading bot, featuring real-time market analysis, smart contract integration, and automated trading strategies.',
+    tags: ['TypeScript', 'Solana', 'Web3.js', 'Node.js', 'Quicknode'],
+    imageUrl: solana,
   },
   {
-    title: 'Mailgun',
+    title: 'rt-wa.com',
     description:
-      'While working with Mailgun I worked on the public facing SaaS mail analytics dashboard providing detailed email insights for our customers.',
-    tags: ['React', 'Redux', 'Storybook', 'Python', 'Flask'],
-    imageUrl: mailgun,
-  },
-  {
-    title: 'Nike',
-    description:
-      'While working with Nike I worked on the Member Access Dashboard for internal teams to create content for Member Access.',
-    tags: ['React', 'Redux', 'Node.js', 'Express', 'GraphQL', 'AWS'],
-    imageUrl: nike,
+      'Designed and developed a fully responsive marketing website for the Riley Thompson Wealth Management team.',
+    tags: ['Next.js', 'Vercel', 'Resend'],
+    imageUrl: rtwa,
   },
 ] as const;
 

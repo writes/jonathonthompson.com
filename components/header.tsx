@@ -37,8 +37,10 @@ export default function Header() {
                 )}
                 href={link.hash}
                 onClick={() => {
-                  setActiveSection(link.name);
-                  setTimeOfLastClick(Date.now());
+                  if (link.hash.startsWith('#')) {
+                    setActiveSection(link.name);
+                    setTimeOfLastClick(Date.now());
+                  }
                 }}
               >
                 {link.name}

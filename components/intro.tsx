@@ -15,20 +15,49 @@ export default function Intro() {
   const { ref } = useSectionInView('Home', 0.5);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  };
+
   return (
-    <section
+    <motion.section
       ref={ref}
       id="home"
       className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
     >
       <div className="flex items-center justify-center">
         <div className="relative">
           <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
+            variants={itemVariants}
+            initial={{ opacity: 0, scale: 0, rotate: -180 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{
-              type: 'tween',
-              duration: 0.2,
+              type: 'spring',
+              stiffness: 125,
+              damping: 10,
+              duration: 0.6,
             }}
           >
             <Image
@@ -60,34 +89,55 @@ export default function Intro() {
 
       <motion.h1
         className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
+        variants={itemVariants}
+        initial={{ opacity: 0, y: 50, scale: 0.8 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+          delay: 0.4
+        }}
       >
-        <span className="font-bold">Hello, I'm Jonathon.</span> I'm a{' '}
-        <span className="font-bold">full-stack developer</span> with{' '}
-        <span className="font-bold">10 years</span> of experience. I enjoy
-        building <span className="italic">websites & apps</span>.
+        <span className="font-bold">Hello, I'm Jonathon</span>—a{' '}
+        <span className="font-bold">Software Engineer</span> specializing in{' '}
+        <span className="font-bold">React and TypeScript</span>, with a decade of experience crafting performant, accessible web experiences.
       </motion.h1>
+
+      <motion.p
+        className="mb-10 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+          delay: 0.5
+        }}
+      >
+        I architect end-to-end UI solutions, mentor teams, and collaborate with stakeholders to create{' '}
+        <span className="italic">user-centric interfaces</span> that drive engagement and business results.
+      </motion.p>
 
       <motion.div
         className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.1,
-        }}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        <Link
-          href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
-          onClick={() => {
-            setActiveSection('Contact');
-            setTimeOfLastClick(Date.now());
-          }}
-        >
-          Contact me here{' '}
-          <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
-        </Link>
+        <motion.div variants={itemVariants}>
+          <Link
+            href="#contact"
+            className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
+            onClick={() => {
+              setActiveSection('Contact');
+              setTimeOfLastClick(Date.now());
+            }}
+          >
+            Contact me here{' '}
+            <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
+          </Link>
+        </motion.div>
 
         {/* <a
           className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
@@ -98,22 +148,28 @@ export default function Intro() {
           <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
         </a> */}
 
-        <a
-          className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+        <motion.a
+          variants={itemVariants}
+          whileHover={{ scale: 1.15, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
           href="https://www.linkedin.com/in/jonathonhthompson/"
           target="_blank"
         >
           <BsLinkedin />
-        </a>
+        </motion.a>
 
-        <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+        <motion.a
+          variants={itemVariants}
+          whileHover={{ scale: 1.15, rotate: -5 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
           href="https://github.com/writes"
           target="_blank"
         >
           <FaGithubSquare />
-        </a>
+        </motion.a>
       </motion.div>
-    </section>
+    </motion.section>
   );
 }
