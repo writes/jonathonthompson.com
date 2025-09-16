@@ -2,10 +2,25 @@ import { RiotAPI } from './riot-api-datasource';
 import { InMemoryCache, RateLimiter } from './cache-manager';
 import { getChampionById } from './champion-data';
 import { GraphQLError } from 'graphql';
+import { pubsub, SUBSCRIPTION_EVENTS } from './subscriptions';
+import { withFilter } from 'graphql-subscriptions';
+import { getGraphQLCache } from '@/lib/services/cache';
+import { getLeaderboardService } from '@/lib/services/leaderboard';
+import { getAPIRateLimiter } from '@/lib/services/rate-limiter';
 
 const cache = new InMemoryCache();
 const rateLimiter = new RateLimiter();
+const graphqlCache = getGraphQLCache();
+const leaderboardService = getLeaderboardService();
+const apiRateLimiter = getAPIRateLimiter();
+
 cache.startCleanup();
+
+// Initialize services - temporarily disabled to avoid Redis connection errors
+// (async () => {
+//   await graphqlCache.connect();
+//   await leaderboardService.connect();
+// })();
 
 // Polling management for live updates
 const activePolls = new Map<string, NodeJS.Timeout>();
@@ -13,9 +28,11 @@ const activePolls = new Map<string, NodeJS.Timeout>();
 export const resolvers = {
   Query: {
     topPlayers: async (_: any, { region }: { region: string }, context: any) => {
-      const cacheKey = `topPlayers:${region}`;
-      const cached = cache.get(cacheKey);
-      if (cached) return cached;
+      // Try Redis cache first
+      const cachedPlayers = await leaderboardService.getTopPlayers(region, 10);
+      if (cachedPlayers.length > 0) {
+        return cachedPlayers;
+      }
 
       const apiKey = context.riotApiKey;
       const riotAPI = new RiotAPI(apiKey);
@@ -124,6 +141,23 @@ export const resolvers = {
 
         // Filter out null entries
         const validPlayers = players.filter(p => p !== null);
+
+        // Update Redis leaderboard
+        const leaderboardEntries = validPlayers.map((player, index) => ({
+          playerId: player.id,
+          playerName: player.summonerName,
+          rank: index + 1,
+          leaguePoints: player.leagueEntry?.leaguePoints || 0,
+          wins: player.leagueEntry?.wins || 0,
+          losses: player.leagueEntry?.losses || 0,
+          winRate: player.leagueEntry?.winRate || 0,
+          tier: player.leagueEntry?.tier || 'UNRANKED',
+          division: player.leagueEntry?.division || 'IV',
+          hotStreak: player.leagueEntry?.hotStreak || false,
+          profileIconId: player.profileIconId
+        }));
+        
+        await leaderboardService.updateMultiplePlayers(region, leaderboardEntries);
 
         cache.set(cacheKey, validPlayers, 300000); // Cache for 5 minutes
         return validPlayers;
@@ -397,6 +431,42 @@ export const resolvers = {
           }
         }
       }
+    },
+
+    matchUpdated: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator([SUBSCRIPTION_EVENTS.MATCH_UPDATED]),
+        (payload, variables) => {
+          return payload.matchUpdated.matchId === variables.matchId;
+        }
+      )
+    },
+
+    playerStatusChanged: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator([SUBSCRIPTION_EVENTS.PLAYER_STATUS_CHANGED]),
+        (payload, variables) => {
+          return payload.playerStatusChanged.playerId === variables.playerId;
+        }
+      )
+    },
+
+    tournamentUpdated: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator([SUBSCRIPTION_EVENTS.TOURNAMENT_UPDATED]),
+        (payload, variables) => {
+          return payload.tournamentUpdated.id === variables.tournamentId;
+        }
+      )
+    },
+
+    leaderboardChanged: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator([SUBSCRIPTION_EVENTS.LEADERBOARD_CHANGED]),
+        (payload, variables) => {
+          return payload.leaderboardChanged.region === variables.region;
+        }
+      )
     }
   }
 };

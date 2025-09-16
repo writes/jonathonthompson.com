@@ -31,6 +31,18 @@ export const links = [
     hash: '/league',
   },
   {
+    name: 'Champions',
+    hash: '/league/champion/lux',
+  },
+  {
+    name: 'Draft Assistant',
+    hash: '/league/draft',
+  },
+  {
+    name: 'Tournaments',
+    hash: '/league/tournament',
+  },
+  {
     name: 'Contact',
     hash: '#contact',
   },

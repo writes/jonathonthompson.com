@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { HiUsers, HiShieldCheck, HiChartBar, HiCog, HiDatabase, HiRefresh } from "react-icons/hi";
-import { UserRole } from "@/lib/auth-advanced";
+import { UserRole } from "@/lib/auth-simple";
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
@@ -163,22 +163,28 @@ export default function AdminDashboard() {
             transition={{ delay: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            <button className="bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-6 hover:bg-white/10 transition-colors text-left">
-              <HiUsers className="w-8 h-8 text-purple-400 mb-4" />
-              <h3 className="text-white font-semibold mb-2">Manage Users</h3>
-              <p className="text-gray-400 text-sm">View and manage all user accounts</p>
+            <button 
+              onClick={() => router.push('/admin/security')}
+              className="bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-6 hover:bg-white/10 transition-colors text-left"
+            >
+              <HiShieldCheck className="w-8 h-8 text-purple-400 mb-4" />
+              <h3 className="text-white font-semibold mb-2">Security Center</h3>
+              <p className="text-gray-400 text-sm">Monitor threats and security metrics</p>
+            </button>
+
+            <button 
+              onClick={() => router.push('/admin/performance')}
+              className="bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-6 hover:bg-white/10 transition-colors text-left"
+            >
+              <HiChartBar className="w-8 h-8 text-purple-400 mb-4" />
+              <h3 className="text-white font-semibold mb-2">Performance</h3>
+              <p className="text-gray-400 text-sm">View application performance metrics</p>
             </button>
 
             <button className="bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-6 hover:bg-white/10 transition-colors text-left">
               <HiCog className="w-8 h-8 text-purple-400 mb-4" />
               <h3 className="text-white font-semibold mb-2">System Settings</h3>
               <p className="text-gray-400 text-sm">Configure application settings</p>
-            </button>
-
-            <button className="bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-6 hover:bg-white/10 transition-colors text-left">
-              <HiChartBar className="w-8 h-8 text-purple-400 mb-4" />
-              <h3 className="text-white font-semibold mb-2">Analytics</h3>
-              <p className="text-gray-400 text-sm">View detailed usage analytics</p>
             </button>
           </motion.div>
         </motion.div>

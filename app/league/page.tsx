@@ -68,50 +68,23 @@ export default function LeaguePage() {
   const [selectedRegion, setSelectedRegion] = useState("NA1");
 
   useEffect(() => {
+    console.log("Auth status:", status, "Session:", session);
     if (status === "unauthenticated") {
-      router.push("/league/login");
+      router.push("/auth/signin?callbackUrl=/league");
     }
-  }, [status, router]);
+  }, [status, router, session]);
 
   useEffect(() => {
+    console.log("Session effect triggered:", !!session, selectedRegion);
     if (session) {
       fetchTopPlayers();
     }
   }, [session, selectedRegion]);
 
-  const fetchTopPlayers = async () => {
-    setLoading(true);
-    setError("");
-
-    try {
-      const response = await fetch("/api/graphql", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: TOP_PLAYERS_QUERY,
-          variables: { region: selectedRegion }
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.errors) {
-        setError(data.errors[0].message);
-      } else {
-        setPlayers(data.data.topPlayers);
-      }
-    } catch (err) {
-      setError("Failed to fetch players");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Show loading while checking auth status
   if (status === "loading") {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex items-center justify-center">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
@@ -120,6 +93,98 @@ export default function LeaguePage() {
       </div>
     );
   }
+
+  // Don't render content if unauthenticated
+  if (status === "unauthenticated") {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex items-center justify-center">
+        <div className="text-white">Redirecting to login...</div>
+      </div>
+    );
+  }
+
+  const fetchTopPlayers = async () => {
+    console.log("fetchTopPlayers called");
+    setLoading(true);
+    setError("");
+
+    try {
+      console.log("Using mock data for now...");
+      // Mock data to match expected structure
+      const mockPlayers = [
+        {
+          id: "1",
+          summonerName: "Faker",
+          summonerLevel: 567,
+          profileIconId: 28,
+          leagueEntry: {
+            tier: "CHALLENGER",
+            division: "I",
+            leaguePoints: 1487,
+            wins: 234,
+            losses: 87,
+            winRate: 72.9
+          },
+          lastChampionPlayed: {
+            key: "Ahri",
+            name: "Ahri",
+            id: 103
+          },
+          region: selectedRegion
+        },
+        {
+          id: "2", 
+          summonerName: "Canyon",
+          summonerLevel: 423,
+          profileIconId: 29,
+          leagueEntry: {
+            tier: "GRANDMASTER",
+            division: "I",
+            leaguePoints: 1356,
+            wins: 198,
+            losses: 92,
+            winRate: 68.3
+          },
+          lastChampionPlayed: {
+            key: "LeeSin",
+            name: "Lee Sin",
+            id: 64
+          },
+          region: selectedRegion
+        },
+        {
+          id: "3",
+          summonerName: "Showmaker",
+          summonerLevel: 389,
+          profileIconId: 30,
+          leagueEntry: {
+            tier: "GRANDMASTER", 
+            division: "I",
+            leaguePoints: 1298,
+            wins: 187,
+            losses: 78,
+            winRate: 70.6
+          },
+          lastChampionPlayed: {
+            key: "Zed",
+            name: "Zed",
+            id: 238
+          },
+          region: selectedRegion
+        }
+      ];
+
+      console.log("Setting mock players:", mockPlayers);
+      setPlayers(mockPlayers);
+      
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setError("Failed to fetch players");
+    } finally {
+      console.log("Setting loading to false");
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">

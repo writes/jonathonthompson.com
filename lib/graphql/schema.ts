@@ -9,6 +9,10 @@ export const typeDefs = `#graphql
 
   type Subscription {
     playerGameUpdate(summonerId: String!): PlayerGameUpdate!
+    matchUpdated(matchId: String!): Match!
+    playerStatusChanged(playerId: String!): PlayerStatus!
+    tournamentUpdated(tournamentId: String!): Tournament!
+    leaderboardChanged(region: Region!): LeaderboardUpdate!
   }
 
   enum Region {
@@ -154,5 +158,82 @@ export const typeDefs = `#graphql
     ENTERED_GAME
     LEFT_GAME
     GAME_UPDATE
+  }
+
+  type PlayerStatus {
+    playerId: String!
+    online: Boolean!
+    inGame: Boolean!
+    currentGameId: String
+    lastSeen: DateTime!
+  }
+
+  type Tournament {
+    id: String!
+    name: String!
+    status: TournamentStatus!
+    format: TournamentFormat!
+    currentRound: Int!
+    totalRounds: Int!
+    participants: [TournamentParticipant!]!
+    matches: [TournamentMatch!]!
+    startDate: DateTime!
+    endDate: DateTime
+  }
+
+  enum TournamentStatus {
+    UPCOMING
+    IN_PROGRESS
+    COMPLETED
+    CANCELLED
+  }
+
+  enum TournamentFormat {
+    SINGLE_ELIMINATION
+    DOUBLE_ELIMINATION
+    SWISS
+    ROUND_ROBIN
+  }
+
+  type TournamentParticipant {
+    id: String!
+    playerId: String!
+    playerName: String!
+    seed: Int!
+    wins: Int!
+    losses: Int!
+    eliminated: Boolean!
+  }
+
+  type TournamentMatch {
+    id: String!
+    round: Int!
+    player1Id: String!
+    player2Id: String!
+    winnerId: String
+    status: MatchStatus!
+    startTime: DateTime
+    endTime: DateTime
+  }
+
+  enum MatchStatus {
+    SCHEDULED
+    IN_PROGRESS
+    COMPLETED
+    FORFEIT
+  }
+
+  type LeaderboardUpdate {
+    region: Region!
+    timestamp: DateTime!
+    changes: [LeaderboardChange!]!
+  }
+
+  type LeaderboardChange {
+    playerId: String!
+    playerName: String!
+    previousRank: Int!
+    newRank: Int!
+    lpChange: Int!
   }
 `;

@@ -138,9 +138,9 @@ export default function PlayerDetailPage() {
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      router.push("/league/login");
+      router.push("/auth/signin?callbackUrl=/league/player/" + params.region + "/" + params.summonerId);
     }
-  }, [status, router]);
+  }, [status, router, params.region, params.summonerId]);
 
   useEffect(() => {
     if (session && params.region && params.summonerId) {
@@ -449,7 +449,10 @@ export default function PlayerDetailPage() {
                                   isCurrentPlayer ? 'bg-purple-500/20 border border-purple-500/30' : 'bg-white/5'
                                 }`}
                               >
-                                <div className="relative">
+                                <Link 
+                                  href={`/league/champion/${participant.champion.key.toLowerCase()}`}
+                                  className="relative hover:scale-110 transition-transform"
+                                >
                                   <img
                                     src={`https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/${participant.champion.key}.png`}
                                     alt={participant.champion.name}
@@ -462,7 +465,7 @@ export default function PlayerDetailPage() {
                                       className="absolute -top-1 -right-1 w-3 h-3 bg-purple-500 rounded-full"
                                     />
                                   )}
-                                </div>
+                                </Link>
                                 
                                 <div className="flex-1">
                                   <p className={`text-sm font-medium ${
@@ -470,7 +473,12 @@ export default function PlayerDetailPage() {
                                   }`}>
                                     {participant.summoner.summonerName}
                                   </p>
-                                  <p className="text-xs text-gray-500">{participant.champion.name}</p>
+                                  <Link 
+                                    href={`/league/champion/${participant.champion.key.toLowerCase()}`}
+                                    className="text-xs text-gray-500 hover:text-blue-400 transition-colors"
+                                  >
+                                    {participant.champion.name}
+                                  </Link>
                                 </div>
                                 
                                 {isCurrentPlayer && isPolling && (
