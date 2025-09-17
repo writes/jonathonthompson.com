@@ -1,0 +1,8 @@
+id: microsite-program-infant
+name: Infant Care
+template: Program
+fields:
+  name: Infant Care
+  ageRange: 6w-12m
+  summary: |
+    <p>Nurturing care for the youngest learners with a focus on bonding and sensory exploration.</p>

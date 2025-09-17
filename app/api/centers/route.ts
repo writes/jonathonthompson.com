@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json([]);
   }
 
-  const filtered = mockCenters.filter((c) => zip.startsWith('981'));
+  const filtered = sampleCenters.filter((c) => zip.startsWith('981'));
 
   return NextResponse.json(filtered);
 }

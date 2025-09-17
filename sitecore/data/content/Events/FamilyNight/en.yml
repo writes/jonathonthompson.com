@@ -1,0 +1,8 @@
+id: microsite-event-family-night
+name: Family Night
+template: Event
+fields:
+  title: Family Literacy Night
+  date: "2025-04-10T00:00:00Z"
+  summary: |
+    <p>Join us for stories, crafts, and tips to support reading at home.</p>

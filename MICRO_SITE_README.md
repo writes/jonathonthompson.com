@@ -120,8 +120,9 @@ Create placeholder settings in `/sitecore/layout/Placeholder Settings` to define
 For development without a full Sitecore instance:
 
 1. The app uses sample data in `app/api/centers/route.ts`
-2. Components render with sample data defined in `app/microsite/page.tsx`
-3. Analytics events are logged to console (no external tracking)
+2. Disconnected Sitecore data lives in `sitecore/data/routes/microsite/en.yml` and related content folders for Programs and Events
+3. Components render with sample data defined in `app/microsite/page.tsx`
+4. Analytics events are logged to console (no external tracking)
 
 ### 5. Build and Test
 

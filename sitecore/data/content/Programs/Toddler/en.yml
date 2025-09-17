@@ -1,0 +1,8 @@
+id: microsite-program-toddler
+name: Toddler Program
+template: Program
+fields:
+  name: Toddler Program
+  ageRange: 1-2 years
+  summary: |
+    <p>Encourages curiosity and confidence through music, movement, and language-rich play.</p>

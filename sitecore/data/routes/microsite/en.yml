@@ -1,0 +1,43 @@
+id: microsite-home
+name: microsite
+displayName: KinderCare Microsite
+fields:
+  pageTitle: KinderCare Microsite
+placeholders:
+  jss-main:
+    - componentName: ConsentBanner
+    - componentName: AnnouncementBar
+      fields:
+        title: Enrollment for Fall is Open
+        body: <p>Secure your spot today and meet our award-winning teachers.</p>
+        severity: info
+    - componentName: Hero
+      fields:
+        title: Welcome to KinderCare
+        body: <p>Providing quality childcare for families.</p>
+        image:
+          value:
+            src: https://images.unsplash.com/photo-1544717297-fa95b6ee9643?auto=format&fit=crop&w=1400&q=80
+            alt: Children playing together
+        ctaText: Get Started
+        ctaUrl: /contact
+    - componentName: ProgramsGrid
+      fields:
+        title: Our Programs
+        programs:
+          - id: microsite-program-infant
+          - id: microsite-program-toddler
+          - id: microsite-program-prek
+    - componentName: CenterFinder
+      fields:
+        defaultZip: "98102"
+    - componentName: LeadForm
+      fields:
+        title: Connect with a Center Director
+        submitText: Send Message
+    - componentName: CalendarList
+      fields:
+        title: Upcoming Events
+        events:
+          - id: microsite-event-open-house
+          - id: microsite-event-family-night

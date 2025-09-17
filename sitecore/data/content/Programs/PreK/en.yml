@@ -1,0 +1,8 @@
+id: microsite-program-prek
+name: Pre-K
+template: Program
+fields:
+  name: Pre-K
+  ageRange: 3-5 years
+  summary: |
+    <p>Prepares children for kindergarten with hands-on STEAM lessons and social-emotional learning.</p>
