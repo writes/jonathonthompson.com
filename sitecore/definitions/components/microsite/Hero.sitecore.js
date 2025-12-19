@@ -16,7 +16,7 @@ export default function addHeroComponent(manifest) {
       { name: 'body', type: CommonFieldTypes.RichText },
       { name: 'image', type: CommonFieldTypes.Image },
       { name: 'ctaText', type: CommonFieldTypes.SingleLineText },
-      { name: 'ctaUrl', type: CommonFieldTypes.SingleLineText },
+      { name: 'ctaLink', type: CommonFieldTypes.GeneralLink },
     ],
   });
 }

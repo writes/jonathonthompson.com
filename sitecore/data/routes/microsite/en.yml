@@ -20,7 +20,9 @@ placeholders:
             src: https://images.unsplash.com/photo-1544717297-fa95b6ee9643?auto=format&fit=crop&w=1400&q=80
             alt: Children playing together
         ctaText: Get Started
-        ctaUrl: /contact
+        ctaLink:
+          href: /contact
+          text: Get Started
     - componentName: ProgramsGrid
       fields:
         title: Our Programs

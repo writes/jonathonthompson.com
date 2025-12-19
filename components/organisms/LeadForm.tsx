@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Text, Field } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field } from '@sitecore-jss/sitecore-jss-nextjs';
 
 export type LeadFormFields = {
   title: Field<string>;
@@ -31,7 +31,8 @@ export function LeadForm(props: any) {
       className="lead-form p-8 bg-gray-100 max-w-md mx-auto"
     >
       <h2 className="text-2xl font-bold mb-4">
-        <Text field={fields.title} />
+        {/* <Text field={fields.title} /> */}
+        {fields.title?.value || 'Contact Us'}
       </h2>
       <div className="mb-4">
         <label htmlFor="name" className="block">
@@ -78,11 +79,10 @@ export function LeadForm(props: any) {
         disabled={isSubmitting}
         className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
       >
-        {isSubmitting ? (
-          'Submitting...'
-        ) : (
-          <Text field={fields.submitText ?? ({ value: 'Submit' } as any)} />
-        )}
+        {isSubmitting
+          ? 'Submitting...'
+          : /* <Text field={fields.submitText ?? ({ value: 'Submit' } as any)} /> */
+            fields.submitText?.value || 'Submit'}
       </button>
     </form>
   );

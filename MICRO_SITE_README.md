@@ -22,6 +22,7 @@ The microsite is built using Sitecore JSS (Headless React) with Next.js, TypeScr
 - **Headless Architecture**: Content managed in Sitecore, frontend in React.
 - **SSR/SSG**: Supports static generation for performance.
 - **Interactive Components**: CenterFinder with lazy loading and API integration, LeadForm with submission.
+- **Layout Service Rendering**: Placeholder-driven rendering backed by a layout API that mirrors Sitecore Layout Service output.
 - **Accessibility**: ARIA labels, keyboard navigation, skip links in PageShell.
 - **SEO**: Structured data (JSON-LD) for Organization and ChildCare schemas.
 - **Analytics & Consent**: Event bus for tracking, consent banner for GDPR compliance.
@@ -154,6 +155,13 @@ npm start
    - LeadForm: Fill and submit the form (shows alert)
    - ConsentBanner: Accept/decline cookies
 
+## APIs
+
+- `GET /api/microsite-layout`: Returns the placeholder-based layout used by `/microsite`.
+- `GET /api/programs`: Provides program data for the ProgramsGrid component.
+- `GET /api/events`: Supplies event data for the CalendarList component.
+- `GET /api/centers?zip=xxxxx`: Returns mock center data for the CenterFinder component.
+
 ### Production Deployment
 
 1. Build the application:
@@ -224,7 +232,7 @@ Each Sitecore rendering should map to the corresponding React component:
 
 | Sitecore Rendering | React Component | Required Fields                     |
 | ------------------ | --------------- | ----------------------------------- |
-| Hero               | Hero            | title, body, image, ctaText, ctaUrl |
+| Hero               | Hero            | title, body, image, ctaText, ctaLink |
 | ProgramsGrid       | ProgramsGrid    | title, programs[]                   |
 | CenterFinder       | CenterFinder    | defaultZip                          |
 | AnnouncementBar    | AnnouncementBar | title, body, severity               |

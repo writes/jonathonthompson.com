@@ -1,4 +1,6 @@
-import { Text, Field } from '@sitecore-jss/sitecore-jss-nextjs';
+'use client';
+
+import { Field } from '@sitecore-jss/sitecore-jss-nextjs';
 
 type ProgramSource = {
   name?: Field<string> | string;
@@ -43,11 +45,15 @@ function normalizePrograms(programs?: ProgramsGridFields['programs']) {
         summary: coerceField(source.summary),
       };
     })
-    .filter((program): program is {
-      name: Field<string>;
-      ageRange: Field<string>;
-      summary: Field<string>;
-    } => Boolean(program?.name));
+    .filter(
+      (
+        program
+      ): program is {
+        name: Field<string>;
+        ageRange: Field<string>;
+        summary: Field<string>;
+      } => Boolean(program?.name)
+    );
 }
 
 export function ProgramsGrid(props: any) {
@@ -56,19 +62,25 @@ export function ProgramsGrid(props: any) {
   return (
     <section className="programs p-8">
       <h2 className="text-3xl font-bold">
-        <Text field={coerceField(fields.title ?? { value: '' } as Field<string>)} />
+        {/* <Text
+          field={coerceField(fields.title ?? ({ value: '' } as Field<string>))}
+        /> */}
+        {coerceField(fields.title ?? ({ value: '' } as Field<string>)).value}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
         {programs.map((program, index) => (
           <div key={index} className="border p-4 rounded">
             <h3 className="text-xl font-semibold">
-              <Text field={program.name} />
+              {/* <Text field={program.name} /> */}
+              {program.name.value}
             </h3>
             <p className="text-gray-600">
-              <Text field={program.ageRange} />
+              {/* <Text field={program.ageRange} /> */}
+              {program.ageRange.value}
             </p>
             <p>
-              <Text field={program.summary} />
+              {/* <Text field={program.summary} /> */}
+              {program.summary?.value || ''}
             </p>
           </div>
         ))}

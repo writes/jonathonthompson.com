@@ -1,4 +1,6 @@
-import { Text, Field } from '@sitecore-jss/sitecore-jss-nextjs';
+'use client';
+
+import { Field } from '@sitecore-jss/sitecore-jss-nextjs';
 
 export type AnnouncementFields = {
   title: Field<string>;
@@ -26,10 +28,12 @@ export function AnnouncementBar(props: any) {
       aria-label="Announcement"
     >
       <h2 className="font-bold">
-        <Text field={fields.title} />
+        {/* <Text field={fields.title} /> */}
+        {fields.title?.value || 'Announcement'}
       </h2>
       <p>
-        <Text field={fields.body} />
+        {/* <Text field={fields.body} /> */}
+        <span dangerouslySetInnerHTML={{ __html: fields.body?.value || '' }} />
       </p>
     </div>
   );
