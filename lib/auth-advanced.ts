@@ -215,8 +215,8 @@ export function verifyPassword(password: string, hash: string): boolean {
   return bcrypt.compareSync(password, hash);
 }
 
-export function generateToken(payload: any, expiresIn: string = "1h"): string {
-  return jwt.sign(payload, process.env.NEXTAUTH_SECRET!, { expiresIn });
+export function generateToken(payload: any, expiresIn: string | number = "1h"): string {
+  return jwt.sign(payload, process.env.NEXTAUTH_SECRET!, { expiresIn: expiresIn as jwt.SignOptions["expiresIn"] });
 }
 
 export function verifyToken(token: string): any {

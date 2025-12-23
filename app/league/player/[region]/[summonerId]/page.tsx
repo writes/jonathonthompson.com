@@ -45,6 +45,8 @@ interface PlayerDetail {
     gameId: string;
     gameStartTime: string;
     gameMode: string;
+    gameLength?: number;
+    mapId?: number;
     participants: Array<{
       championId: number;
       champion: {
